@@ -1,0 +1,142 @@
+ <!DOCTYPE html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>BricoPanel</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body
+      {
+          margin:0;
+      }
+
+      .h1container 
+      {
+        display: block;
+        font-size: 2em;
+        text-align: center; 
+        vertical-align: middle;
+        font-weight: bold;
+      }
+      
+      .slidecontainer 
+      {
+        width: 100%;
+      }
+
+      .slidecontainer table 
+      {
+          width: 80%;
+          border: 0;
+          margin: 0 auto; 
+          text-align: center;
+      }
+
+      .slider 
+      {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 100px;
+        background: #d3d3d3;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+      }
+
+      .slider:hover 
+      {
+        opacity: 1;
+      }
+
+      .slider::-webkit-slider-thumb 
+      {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 25px;
+        height: 100px;
+        background: #04AA6D;
+        cursor: pointer;
+      }
+
+      .slider::-moz-range-thumb 
+      {
+        width: 25px;
+        height: 25px;
+        background: #04AA6D;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="h1container">
+      <h1>BricoGeek ambient lights panel</h1>
+    </div>
+    <div class="slidecontainer">
+      <table>
+        <tr>
+          <th colspan="3" scope="colgroup"><h2>Panel frontal</h2></th>
+        </tr>
+        <tr>
+          <th scope="col">R <span id="RF"></span></th>
+          <th scope="col">G <span id="GF"></span></th>
+          <th scope="col">B <span id="BF"></span></th>
+        </tr>
+        <tr>
+          <th scope="col">
+            <input type="range" min="0" max="255" value="50" class="slider" id="RFront" onchange="sendData(this.value)">
+          </th>
+          <th scope="col">
+            <input type="range" min="0" max="255" value="50" class="slider" id="GFront" onchange="sendData(this.value)">
+          </th>
+          <th scope="col">
+            <input type="range" min="0" max="255" value="50" class="slider" id="BFront" onchange="sendData(this.value)">
+          </th>
+        </tr>
+        <tr>
+          <th colspan="3" scope="colgroup">Brillo frontal <span id="pwmf"></span></th>
+        </tr>
+        <tr>
+          <th colspan="3" scope="colgroup">
+            <input type="range" min="0" max="255" value="50" class="slider" id="PWMFront" onchange="sendData(this.value)">
+          </th>
+        </tr>
+        <tr>
+          <th colspan="3" scope="colgroup">
+            <br/><br/><br/>
+          </th>
+        </tr>
+        <tr>
+          <th colspan="3" scope="colgroup"><h2>Panel trasero</h2></th>
+        </tr>
+        <tr>
+          <th scope="col">R <span id="RB"></span></th>
+          <th scope="col">G <span id="GB"></span></th>
+          <th scope="col">B <span id="BB"></span></th>
+        </tr>
+        <tr>
+          <th scope="col">
+            <input type="range" min="0" max="255" value="50" class="slider" id="RBack" onchange="sendData(this.value)">
+          </th>
+          <th scope="col">
+            <input type="range" min="0" max="255" value="50" class="slider" id="GBack" onchange="sendData(this.value)">
+          </th>
+          <th scope="col">
+            <input type="range" min="0" max="255" value="50" class="slider" id="BBack" onchange="sendData(this.value)">
+          </th>
+        </tr>
+        <tr>
+          <th colspan="3" scope="colgroup">Brillo trasero <span id="pwmb"></span></th>
+        </tr>
+        <tr>
+          <th colspan="3" scope="colgroup">
+            <input type="range" min="0" max="255" value="50" class="slider" id="PWMBack" onchange="sendData(this.value)">
+          </th>
+        </tr>
+      </table>
+    </div>
+    <script src="./js/main.js"></script>
+  </body>
+</html>
