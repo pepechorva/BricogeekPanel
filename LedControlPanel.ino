@@ -1,10 +1,21 @@
-#include <Arduino.h>
+#if defined(ESP8266)
+#include <ESPAsyncWiFiManager.h> 
+#include <FS.h>
+#include <ESP8266WiFi.h>          //https://github.com/esp8266/Arduino
+#else
 #include <WiFiManager.h>
-#include <ESPAsyncWebServer.h>
 #include <SPIFFS.h>
-#include <Adafruit_NeoPixel.h>
-#include <WebSocketsServer.h>
 #include <ArduinoJson.h>
+#endif
+
+
+#include <Arduino.h>
+#include <ArduinoJson.h>
+#include <Adafruit_NeoPixel.h>
+#include <ESPAsyncWebServer.h>
+#include <WebSocketsServer.h>
+
+
 
 
 /*
@@ -17,8 +28,14 @@
 */
 
 
+#if defined(ESP8266)
+#define LED_PIN_FRONT D2
+#define LED_PIN_BACK D3
+#else
 #define LED_PIN_FRONT 13
 #define LED_PIN_BACK 12
+#endif
+
 #define LED_COUNT  20
 #define BRIGHTNESS 0 
 
@@ -35,9 +52,16 @@
 #define CLEARCREDENTIALS 0 //0 for persistance
 
 
+#if defined(ESP8266)
+AsyncWebServer server(WEBSERVER);
+DNSServer dns;
+AsyncWiFiManager wm(&server,&dns);
+#else
 WiFiManager wm;
 AsyncWebServer server(WEBSERVER);
 WebSocketsServer webSocket(WEBSOCKET);
+#endif
+
 
 Adafruit_NeoPixel frontStrip(LED_COUNT, LED_PIN_FRONT, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel backStrip(LED_COUNT, LED_PIN_BACK, NEO_GRB + NEO_KHZ800);
